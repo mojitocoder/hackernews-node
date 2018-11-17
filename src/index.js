@@ -25,11 +25,11 @@ const resolvers = {
     info: () => `Insurance for small businesses`,
     feed: () => links,
   },
-  Link: {
-    id: (root) => root.id,
-    description: (root) => root.description,
-    url: (root) => root.url,
-  }
+  // Link: {
+  //   id: (root) => root.id,
+  //   description: (root) => root.description,
+  //   url: (root) => root.url,
+  // }
 }
 
 const server = new GraphQLServer({
