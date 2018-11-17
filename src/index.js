@@ -12,6 +12,9 @@ const resolvers = {
   Query: {
     info: () => `Insurance for small businesses`,
     feed: () => links,
+    link: (root, args) => {
+      return links.filter(link => link.id === args.id)[0]
+    },
   },
   Mutation: {
     post: (root, args) => {
@@ -22,7 +25,22 @@ const resolvers = {
       }
       links.push(link)
       return link
-    }
+    },
+    updateLink: (root, args) => {
+      let link = links.filter(link => link.id === args.id)[0]
+      if (link) {
+        link.url = args.url
+        link.description = args.description
+      }
+      return link
+    },
+    deleteLink: (root, args) => {
+      let link = links.filter(link => link.id === args.id)[0]
+      if (link) {
+        links = links.filter(link => link.id !== args.id)
+      }
+      return link
+    },
   },
 }
 
