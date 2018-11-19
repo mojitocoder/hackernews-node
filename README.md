@@ -16,7 +16,11 @@ GrapQL
   + Fields on `root types` are called `root fields`
   + When sending queries/mutation/subscriptions to the server, these always need to start with a `root fields`
 
-4.
+4. Useful commands:
+   + `node src/index.js`: To start the graphql web server
+   + `graphql playground`: To open both playgrounds (user facing + Prisma backend GraphQL API) in the same browser tab
+   + `prisma deploy`
+   + `prisma info`
 
 Schema:
 
