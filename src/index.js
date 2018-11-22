@@ -1,49 +1,14 @@
+const Query = require('./resolvers/Query')
+const Mutation = require('./resolvers/Mutation')
+const AuthPayload = require('./resolvers/AuthPayload')
+
 const { GraphQLServer } = require('graphql-yoga')
 const { Prisma } = require('prisma-binding')
 
-let links = [{
-  id: 'link-0',
-  url: 'www.simplybusiness.co.uk',
-  description: 'Simply Business website'
-}]
-
-let idCount = links.length
-
 const resolvers = {
-  Query: {
-    info: () => `Hackernew Clone using GraphQL`,
-    feed: (root, args, context, info) => {
-      return context.db.query.links({}, info)
-    },
-    link: (root, args) => {
-      return links.filter(link => link.id === args.id)[0]
-    },
-  },
-  Mutation: {
-    post: (root, args, context, info) => {
-      return context.db.mutation.createLink({
-        data: {
-          description: args.description,
-          url: args.url,
-        }
-      }, info)     
-    },
-    updateLink: (root, args) => {
-      let link = links.filter(link => link.id === args.id)[0]
-      if (link) {
-        link.url = args.url
-        link.description = args.description
-      }
-      return link
-    },
-    deleteLink: (root, args) => {
-      let link = links.filter(link => link.id === args.id)[0]
-      if (link) {
-        links = links.filter(link => link.id !== args.id)
-      }
-      return link
-    },
-  },
+  Query,
+  Mutation,
+  AuthPayload,
 }
 
 const server = new GraphQLServer({
